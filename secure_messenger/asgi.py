@@ -1,5 +1,5 @@
 """
-ASGI config for secure_massenger project.
+ASGI config for secure_messenger project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -14,16 +14,16 @@ from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 
-import secure_massenger.messenger.routing
+import secure_messenger.messenger.routing
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'secure_massenger.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'secure_messenger.settings')
 django.setup()
 # application = get_asgi_application()
 application = ProtocolTypeRouter({
     "http": AsgiHandler(),
     "websocket": AuthMiddlewareStack(
         URLRouter(
-            secure_massenger.messenger.routing.websocket_urlpatterns
+            secure_messenger.messenger.routing.websocket_urlpatterns
         )
     ),
 })
